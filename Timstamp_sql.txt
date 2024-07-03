@@ -1,0 +1,91 @@
+SELECT 
+    start_ts,
+    end_ts,
+    TO_CHAR(TRUNC((end_ts - start_ts) * 24), 'FM00') || ':' ||
+    TO_CHAR(TRUNC(MOD((end_ts - start_ts) * 24 * 60, 60)), 'FM00') || ':' ||
+    TO_CHAR(TRUNC(MOD((end_ts - start_ts) * 24 * 60 * 60, 60)), 'FM00') AS time_diff
+FROM 
+    your_table;
+Explanation:
+
+TRUNC((end_ts - start_ts) * 24) calculates the difference in hours.
+TRUNC(MOD((end_ts - start_ts) * 24 * 60, 60)) calculates the remaining minutes after accounting for the full hours.
+TRUNC(MOD((end_ts - start_ts) * 24 * 60 * 60, 60)) calculates the remaining seconds after accounting for the full hours and minutes.
+TO_CHAR(..., 'FM00') formats each component to ensure it has two digits, with leading zeros if necessary.
+|| ':' || concatenates the components with colons to form the final "HH:MI
+" format.
+
+
+**********************************
+
+SELECT 
+    start_ts,
+    end_ts,
+    TRUNC((end_ts - start_ts) * 24) AS hours_diff,
+    TRUNC(MOD((end_ts - start_ts) * 24 * 60, 60)) AS minutes_diff,
+    TRUNC(MOD((end_ts - start_ts) * 24 * 60 * 60, 60)) AS seconds_diff
+FROM 
+    your_table;
+Explanation:
+
+(end_ts - start_ts) * 24 converts the interval to hours.
+TRUNC((end_ts - start_ts) * 24) extracts the number of full hours.
+(end_ts - start_ts) * 24 * 60 converts the interval to minutes.
+TRUNC(MOD((end_ts - start_ts) * 24 * 60, 60)) extracts the remaining minutes after accounting for the full hours.
+(end_ts - start_ts) * 24 * 60 * 60 converts the interval to seconds.
+TRUNC(MOD((end_ts - start_ts) * 24 * 60 * 60, 60)) extracts the remaining seconds after accounting for the full hours and minutes.
+
+**************************
+SELECT 
+    start_ts,
+    end_ts,
+    EXTRACT(HOUR FROM NUMTODSINTERVAL(end_ts - start_ts, 'DAY')) AS hours_diff,
+    EXTRACT(MINUTE FROM NUMTODSINTERVAL(end_ts - start_ts, 'DAY')) AS minutes_diff,
+    EXTRACT(SECOND FROM NUMTODSINTERVAL(end_ts - start_ts, 'DAY')) AS seconds_diff
+FROM 
+    your_table;
+Explanation:
+
+end_ts - start_ts calculates the difference between the two timestamps as an interval in days.
+NUMTODSINTERVAL(end_ts - start_ts, 'DAY') converts the difference into a day-to-second interval.
+EXTRACT(HOUR FROM NUMTODSINTERVAL(end_ts - start_ts, 'DAY')) extracts the number of hours from the interval.
+EXTRACT(MINUTE FROM NUMTODSINTERVAL(end_ts - start_ts, 'DAY')) extracts the number of minutes from the interval.
+EXTRACT(SECOND FROM NUMTODSINTERVAL(end_ts - start_ts, 'DAY')) extracts the number of seconds from the interval.
+
+****************
+
+SELECT 
+    start_ts,
+    end_ts,
+    FLOOR((end_ts - start_ts) * 24) AS hours_diff,
+    FLOOR(MOD((end_ts - start_ts) * 24 * 60, 60)) AS minutes_diff,
+    FLOOR(MOD((end_ts - start_ts) * 24 * 60 * 60, 60)) AS seconds_diff
+FROM 
+    your_table;
+Explanation:
+
+(end_ts - start_ts) gives the difference between the two timestamps as an INTERVAL.
+(end_ts - start_ts) * 24 converts the interval to hours.
+FLOOR((end_ts - start_ts) * 24) extracts the number of full hours.
+(end_ts - start_ts) * 24 * 60 converts the interval to minutes.
+FLOOR(MOD((end_ts - start_ts) * 24 * 60, 60)) extracts the remaining minutes after accounting for the full hours.
+(end_ts - start_ts) * 24 * 60 * 60 converts the interval to seconds.
+FLOOR(MOD((end_ts - start_ts) * 24 * 60 * 60, 60)) extracts the remaining seconds after accounting for the full hours and minutes.
+
+******************
+
+SELECT 
+    start_ts,
+    end_ts,
+    TIMESTAMPDIFF(HOUR, start_ts, end_ts) AS hours_diff,
+    MOD(TIMESTAMPDIFF(MINUTE, start_ts, end_ts), 60) AS minutes_diff,
+    MOD(TIMESTAMPDIFF(SECOND, start_ts, end_ts), 60) AS seconds_diff
+FROM 
+    your_table;
+Explanation:
+
+TIMESTAMPDIFF(HOUR, start_ts, end_ts) calculates the difference in hours.
+TIMESTAMPDIFF(MINUTE, start_ts, end_ts) calculates the difference in minutes.
+MOD(TIMESTAMPDIFF(MINUTE, start_ts, end_ts), 60) gets the remaining minutes after dividing by 60 to handle overflow.
+MOD(TIMESTAMPDIFF(SECOND, start_ts, end_ts), 60) gets the remaining seconds after dividing by 60 to handle overflow.
+
