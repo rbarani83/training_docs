@@ -1,0 +1,35 @@
+Automating health checks with a chatbot reduces the manual effort needed for monitoring, allowing developers to focus on coding rather than troubleshooting. Instant failure detection and notifications speed up issue resolution, minimizing downtime. This improves efficiency, reduces stress, and enhances the overall developer experience.
+
+
+Current State:
+
+Developers and support teams manually verify service status, which is time-consuming.
+
+Troubleshooting service failures requires deep investigation, leading to increased downtime.
+
+Notifications of service failures are often delayed and may not be detailed.
+
+Target State (Post Implementation):
+
+Users can query a chatbot for real-time service health updates, automating routine checks.
+
+The system automatically detects failures, analyzes causes, and provides insights for faster resolution.
+
+Automated notifications with failure reasons and suggested resolutions reduce downtime and increase efficiency.
+
+********************
+
+Target State (Post Implementation):
+Automated Health Checks via Chatbot:
+
+Users can query a chatbot for real-time service health updates.
+Chatbot retrieves service status from monitoring tools and logs.
+Faster Issue Identification:
+
+The system automatically detects failures and analyzes probable causes.
+Developers receive insights without needing manual troubleshooting.
+
+***********************
+Current State: Developers and support teams manually monitor and check the health of deployed services, which is time-consuming and prone to delays in identifying failures. Notifications for service terminations often require manual intervention or are not immediately apparent.
+
+Target State: A chatbot automates health checks by responding to user queries about specific services, providing instant status updates. It proactively notifies teams of abnormal terminations, enabling quicker identification and resolution of issues, thereby saving time and improving service reliability.
