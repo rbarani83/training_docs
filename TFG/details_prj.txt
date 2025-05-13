@@ -1,0 +1,42 @@
+The legacy Japan Tickets report is being decommissioned. Previously, the report relied on the ACME database to retrieve account descriptions. Without these descriptions, the report would be incomplete and not human-readable.
+
+The new ULLink application replaces the legacy reporting tool. However, due to compliance restrictions, it is not permitted to access the ACME database. To address this, the account description is now embedded within the ticket report to ensure clarity and usability.
+
+The required ACME account information is now sourced from the Cash-NonUSAAccount entity within the Cesium system. This data is retrieved via the Read API / Spanel data delivery mechanism.
+
+This report is generated once per trading day, with one ticket created for each order placed on the Japan Exchange.
+
+*********
+
+Project Summary: Decommissioning of Legacy Japan Tickets Report and Implementation of ULLink-Based Solution
+
+As part of our ongoing modernization efforts, the legacy Japan Tickets reporting system is being decommissioned. This legacy system relied on the ACME database for account description lookups, which were essential for generating complete and human-readable reports.
+
+The ULLink platform has been introduced as the strategic replacement for this functionality. However, in adherence to compliance and access control policies, the new system is not permitted to interface with the ACME database.
+
+To ensure continuity and report integrity:
+
+Account descriptions will now be embedded directly within the ticket report output.
+
+Required ACME account details are sourced from the Cash-NonUSAAccount entity within Cesium, leveraging the Read API / Spanel data delivery mechanism.
+
+The updated reporting process continues to generate one ticket per trading day for each order on the Japan Exchange, ensuring no disruption to operational workflows.
+
+This change enhances data governance while maintaining reporting accuracy and auditability for business operations.
+
+************
+
+Project Summary: Transition from Legacy Japan Tickets Report to ULLink-Based Solution
+
+As part of our platform modernization initiative, the legacy Japan Tickets report is being retired. This report previously relied on the ACME database to retrieve account descriptions—an essential component for generating complete, human-readable ticket reports.
+
+The ULLink application has been implemented as the strategic replacement. Due to compliance constraints, ULLink is not authorized to access the ACME database. To ensure continuity and data integrity:
+
+Account descriptions will now be included directly in the ticket report output.
+
+Required ACME account data is sourced from the Cash-NonUSAAccount entity within Cesium, delivered via the Read API / Spanel integration.
+
+The updated process generates one ticket per trading day for each order on the Japan Exchange, with no expected impact on downstream systems or operational workflows.
+
+This enhancement ensures compliance, streamlines data delivery, and supports the long-term sustainability of our reporting architecture.
+
